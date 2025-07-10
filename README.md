@@ -36,31 +36,31 @@ A beautiful, full-stack recipe management application built with Next.js 15, fea
 ### Installation
 
 1. **Clone the repository**
-   ```bash
+   \`\`\`bash
    git clone https://github.com/yourusername/recipe-app.git
    cd recipe-app
-   ```
+   \`\`\`
 
 2. **Install dependencies**
-   ```bash
+   \`\`\`bash
    npm install
    # or
    yarn install
-   ```
+   \`\`\`
 
 3. **Run the development server**
-   ```bash
+   \`\`\`bash
    npm run dev
    # or
    yarn dev
-   ```
+   \`\`\`
 
 4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📁 Project Structure
 
-```
+\`\`\`
 recipe-app/
 ├── app/                          # Next.js App Router
 │   ├── page.tsx                 # Homepage
@@ -91,7 +91,7 @@ recipe-app/
 │   └── images/                  # Recipe images
 ├── styles/                      # Global styles
 └── types/                       # TypeScript definitions
-```
+\`\`\`
 
 ## 🛠️ Tech Stack
 
@@ -120,17 +120,17 @@ recipe-app/
 ### Endpoints
 
 #### Get All Recipes
-```http
+\`\`\`http
 GET /api/recipes
-```
+\`\`\`
 
 #### Get Single Recipe
-```http
+\`\`\`http
 GET /api/recipes/[id]
-```
+\`\`\`
 
 #### Create Recipe
-```http
+\`\`\`http
 POST /api/recipes
 Content-Type: application/json
 
@@ -145,12 +145,12 @@ Content-Type: application/json
   "instructions": ["step1", "step2"],
   "tags": ["tag1", "tag2"]
 }
-```
+\`\`\`
 
 #### Search Recipes
-```http
+\`\`\`http
 GET /api/search?q=chocolate&category=dessert&difficulty=easy
-```
+\`\`\`
 
 ## 🎯 Usage Examples
 
@@ -178,10 +178,10 @@ GET /api/search?q=chocolate&category=dessert&difficulty=easy
 ### Environment Variables
 Create a `.env.local` file:
 
-```env
+\`\`\`env
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_APP_NAME=MyRecipes
-```
+\`\`\`
 
 ### Customization
 - **Colors**: Edit `tailwind.config.ts`
@@ -196,33 +196,33 @@ NEXT_PUBLIC_APP_NAME=MyRecipes
 3. Deploy automatically
 
 ### Manual Deployment
-```bash
+\`\`\`bash
 npm run build
 npm start
-```
+\`\`\`
 
 ## 🗄️ Database Integration
 
 Currently uses in-memory storage. To add a real database:
 
 ### MongoDB
-```bash
+\`\`\`bash
 npm install mongodb mongoose
-```
+\`\`\`
 
 ### PostgreSQL
-```bash
+\`\`\`bash
 npm install pg @types/pg
-```
+\`\`\`
 
 ### Supabase
-```bash
+\`\`\`bash
 npm install @supabase/supabase-js
-```
+\`\`\`
 
 ## 🧪 Testing
 
-```bash
+\`\`\`bash
 # Run tests
 npm test
 
@@ -231,7 +231,7 @@ npm run test:coverage
 
 # E2E tests
 npm run test:e2e
-```
+\`\`\`
 
 ## 📱 Progressive Web App
 
@@ -289,7 +289,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Made with ❤️ by [Yusra Bibi]([https://github.com/yourusername](https://github.com/yusrajadoon))**
 
 ⭐ Star this repository if you found it helpful!
-```
+\`\`\`
 
 This README includes:
 
