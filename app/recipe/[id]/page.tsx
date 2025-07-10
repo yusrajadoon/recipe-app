@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -10,9 +12,36 @@ import { FavoriteButton } from "@/components/favorite-button"
 import { ShareButton } from "@/components/share-button"
 import { PrintRecipe } from "@/components/print-recipe"
 import { CookingTimer } from "@/components/cooking-timer"
+import { CookingMode } from "@/components/cooking-mode"
+import { useState, useEffect } from "react"
 
-export default async function RecipeDetailsPage({ params }: { params: { id: string } }) {
-  const recipe = await getRecipeById(params.id)
+export default function RecipeDetailsPage({ params }: { params: { id: string } }) {
+  const [recipe, setRecipe] = useState(null)
+  const [showCookingMode, setShowCookingMode] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchRecipe() {
+      try {
+        const fetchedRecipe = await getRecipeById(params.id)
+        if (!fetchedRecipe) {
+          notFound()
+        }
+        setRecipe(fetchedRecipe)
+      } catch (error) {
+        console.error("Error fetching recipe:", error)
+        notFound()
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchRecipe()
+  }, [params.id])
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   if (!recipe) {
     notFound()
@@ -29,6 +58,14 @@ export default async function RecipeDetailsPage({ params }: { params: { id: stri
       default:
         return "bg-gray-100 text-gray-800"
     }
+  }
+
+  const handleStartCooking = () => {
+    setShowCookingMode(true)
+  }
+
+  const handleCloseCookingMode = () => {
+    setShowCookingMode(false)
   }
 
   return (
@@ -99,7 +136,10 @@ export default async function RecipeDetailsPage({ params }: { params: { id: stri
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
-                  <Button className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-xl transition-all duration-300 h-12">
+                  <Button
+                    onClick={handleStartCooking}
+                    className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-xl transition-all duration-300 h-12"
+                  >
                     <Play className="w-5 h-5 mr-2" />
                     Start Cooking
                   </Button>
@@ -177,6 +217,9 @@ export default async function RecipeDetailsPage({ params }: { params: { id: stri
           </div>
         </div>
       </main>
+
+      {/* Cooking Mode Modal */}
+      {showCookingMode && <CookingMode recipe={recipe} onClose={handleCloseCookingMode} />}
     </div>
   )
 }
